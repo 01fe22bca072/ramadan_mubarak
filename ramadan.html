@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Mubarak Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f8f3e9;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 40px 20px;
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        @media (min-width: 600px) {
+            .card {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .text {
+            max-width: 60%;
+        }
+        .card h1 {
+            font-size: 2rem;
+            color: #2a3d45;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #5c6b73;
+            margin: 10px 0 20px;
+        }
+        .moon {
+            font-size: 5rem;
+            color: #f4c430;
+            animation: pop 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .play-button {
+            background: #f4c430;
+            color: #2a3d45;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .play-button:hover {
+            background: #2a3d45;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+        .spark {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            border-radius: 50%;
+            animation: sparkle 1s ease-out forwards;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <video class="background-video" autoplay loop muted>
+        <source src="ramadan1.mp4" type="video/webm">
+    </video>
+    <div class="card">
+        <div class="moon">🌙</div>
+        <div class="text">
+            <h2>RAMADAN MUBARAK FROM IMARATWALE FAMILY 😄</h2>
+            <p>Wishing you a peaceful and blessed Ramadan filled with joy and reflection.</p>
+            <button class="play-button" onclick="playGreeting()">Play Greeting 🎶</button>
+        </div>
+    </div>
+    <audio id="greeting-audio" src="baqarah1.mp3"></audio>
+    <script>
+        function playGreeting() {
+            document.getElementById('greeting-audio').play();
+            for (let i = 0; i < 20; i++) {
+                createSpark();
+            }
+        }
+        function createSpark() {
+            const spark = document.createElement('div');
+            spark.classList.add('spark');
+            document.body.appendChild(spark);
+            spark.style.left = `${Math.random() * 100}vw`;
+            spark.style.top = `${Math.random() * 100}vh`;
+            setTimeout(() => spark.remove(), 1000);
+        }
+    </script>
+</body>
+</html>
